@@ -9,7 +9,7 @@ sevices:
   - docker
 
 #2) we want to build our Docker image before the tests run
-# It’s just a convention to use Docker userName + repositoryName, actually you can define any name you want
+# It’s a convention to use Docker userName + repositoryName, actually you can define any name you want
 before_install:
   - docker build -t effyhou/docker-react-tutorial-test -f Dockerfile.dev .
 
