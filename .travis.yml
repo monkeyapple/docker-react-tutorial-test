@@ -1,0 +1,18 @@
+language: generic
+
+#we need to use superuser level permissions
+sudo: required
+
+#1) make sure TravisCI understands that we need the Docker CI pre-intalled
+#TravisCI is going to automatically install a copy of Docker into our running container
+sevices:
+  - docker
+
+#2) we want to build our Docker image before the tests run
+# It’s just a convention to use Docker userName + repositoryName, actually you can define any name you want
+before_install:
+  - docker build -t effyhou/docker-react-tutorial-test -f Dockerfile.dev .
+
+#3) Ref:https://create-react-app.dev/docs/running-tests/#continuous-integration
+script:
+  - docker run -e CI=true effyhou/docker-react-tutorial-test npm run test
